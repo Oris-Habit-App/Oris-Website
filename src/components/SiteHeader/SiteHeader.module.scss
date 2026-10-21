@@ -16,11 +16,29 @@
   padding: 0 var(--gutter);
 }
 
+.brand {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--text-primary);
+}
+
+.brand:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: var(--radius-sm);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .links {
   display: flex;
   align-items: center;
   gap: 4px;
-  margin-left: -12px;
 }
 
 .link {

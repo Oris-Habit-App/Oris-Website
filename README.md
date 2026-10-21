@@ -1,8 +1,20 @@
 # Oris Website
 
+<p align="center">
+<img src="docs/landing-light.webp" alt="Landing do Oris no modo claro: ícone do app, título “Hábitos que sobrevivem à vida real.”, campo da lista de espera e o app aberto num Android sobre uma paisagem de montanhas." width="900"/>
+</p>
+
 ## 🕯️ Objetivo
 
 O objetivo do desenvolvimento desse site é informar a qualquer um que tiver interesse sobre nosso projeto do aplicativo **Oris - App de Hábitos** de forma eficiente e acessível para todos!
+
+## 🧭 O que tem na página
+
+- **Lista de espera:** o visitante deixa o e-mail e é avisado quando o app abrir.
+- **O app de verdade:** capturas reais do Oris num Android, sobre uma paisagem que vira manhã no modo claro e anoitecer no modo escuro.
+- **Modo claro e escuro:** segue o sistema até a pessoa escolher no switch da barra do topo; a escolha fica salva no navegador.
+- **Perguntas frequentes** e **Fale com a equipe**, com os canais do projeto.
+- Visual do design system do app (DM Sans, preto e branco, azul como sinal) e animações que respeitam o "reduzir movimento" do sistema.
 
 ## 🔍 Tecnologias
 <p align="center">
@@ -11,8 +23,17 @@ O objetivo do desenvolvimento desse site é informar a qualquer um que tiver int
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg" width="100"/>
 </p>
 
+## ▶️ Como rodar
+
+```bash
+npm install
+npm run dev
+```
+
+O site abre em `http://localhost:3000`. A lista de espera envia para `POST /api/waitlist` do backend do Oris; por padrão, `https://oris-habit-backend.onrender.com/api`. Para usar outro endereço, defina `NEXT_PUBLIC_API_URL` num `.env.local`.
+
 ## 🚀 Missão
-### 1. 🧠 Auxiliar na propagação de informações sobre o Oris de maneira acessível e siplificada
+### 1. 🧠 Auxiliar na propagação de informações sobre o Oris de maneira acessível e simplificada
 ### 2. 🔱 Explicar de maneira efetiva o que é o aplicativo, suas funcionalidades e como funciona
 
 ## 👨‍💻 Desenvolvedores
