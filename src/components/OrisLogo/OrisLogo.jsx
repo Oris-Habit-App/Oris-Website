@@ -11,8 +11,10 @@ const LOGO_PATHS = [
 ];
 
 export default function OrisLogo({ height = 24, title = 'Oris' }) {
+  // Sem largura explícita o SVG ocupa 300px e centraliza o desenho.
+  const width = Math.round((height * 694) / 191);
   return (
-    <svg height={height} viewBox="0 0 694 191" role="img" aria-label={title}>
+    <svg width={width} height={height} viewBox="0 0 694 191" role="img" aria-label={title}>
       {LOGO_PATHS.map((d) => (
         <path key={d.slice(0, 16)} d={d} fill="currentColor" />
       ))}

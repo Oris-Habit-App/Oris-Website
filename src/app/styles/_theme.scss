@@ -1,0 +1,14 @@
+// Dark vale quando o sistema pede e a pessoa não escolheu Light no switch,
+// ou quando escolheu Dark (data-theme no <html>, ver ThemeSwitch).
+// Para CSS Modules: inclua dentro de um seletor local.
+@mixin dark {
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme="light"])) & {
+      @content;
+    }
+  }
+
+  :global(:root[data-theme="dark"]) & {
+    @content;
+  }
+}

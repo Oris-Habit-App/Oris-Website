@@ -1,4 +1,5 @@
 import { DM_Sans } from "next/font/google";
+import { THEME_BOOT_SCRIPT } from "@/components/ThemeSwitch/themeBoot";
 import "@/app/styles/globals.scss";
 
 const dmSans = DM_Sans({
@@ -31,7 +32,11 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="pt-BR" className={dmSans.variable}>
+    // data-theme é posto pelo script antes da hidratação.
+    <html lang="pt-BR" className={dmSans.variable} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_BOOT_SCRIPT }} />
+      </head>
       <body>{children}</body>
     </html>
   );

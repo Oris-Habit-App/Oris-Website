@@ -1,6 +1,7 @@
 // Tokens copied from the app's design system (Oris-Mobile-2,
 // docs/DESIGN_SYSTEM.md v2): same colors, DM Sans 400/500, no borders.
-// Light is the reference; Dark mirrors each role.
+// Light is the reference; Dark mirrors each role. Dark follows the system
+// unless the theme switch set data-theme on <html>.
 :root {
   --canvas: #f7f7f5;
   --surface: #ffffff;
@@ -30,23 +31,31 @@
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --canvas: #050505;
-    --surface: #151515;
-    --surface-subtle: #1c1c1c;
-    --surface-strong: #262626;
-    --text-primary: #f7f7f5;
-    --text-secondary: #b8b8b3;
-    --text-tertiary: #81817c;
-    --action: #f5f5f3;
-    --on-action: #0a0a0a;
-    --accent: #4a95f5;
-    --accent-soft: #10243d;
-    --danger: #f06a6a;
+@mixin dark-tokens {
+  --canvas: #050505;
+  --surface: #151515;
+  --surface-subtle: #1c1c1c;
+  --surface-strong: #262626;
+  --text-primary: #f7f7f5;
+  --text-secondary: #b8b8b3;
+  --text-tertiary: #81817c;
+  --action: #f5f5f3;
+  --on-action: #0a0a0a;
+  --accent: #4a95f5;
+  --accent-soft: #10243d;
+  --danger: #f06a6a;
 
-    color-scheme: dark;
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    @include dark-tokens;
   }
+}
+
+:root[data-theme="dark"] {
+  @include dark-tokens;
 }
 
 @media (min-width: 768px) {
@@ -104,6 +113,19 @@ a {
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
+}
+
+// Reveal (src/components/Reveal): estado escondido só vale depois que o
+// componente decide esconder; "shown" anima de volta ao normal.
+[data-reveal="hidden"] {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+[data-reveal="shown"] {
+  transition:
+    opacity 700ms cubic-bezier(0.2, 0.8, 0.2, 1) var(--reveal-delay, 0ms),
+    transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1) var(--reveal-delay, 0ms);
 }
 
 .visually-hidden {
