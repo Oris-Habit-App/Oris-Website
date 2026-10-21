@@ -1,0 +1,21 @@
+// Entrada dos elementos: sobe um pouco e aparece. Em CSS Modules o nome do
+// keyframe vira local, então cada arquivo que usa este parcial leva a sua
+// cópia. Com movimento reduzido, nada anima.
+
+$ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(var(--rise-distance, 14px));
+  }
+}
+
+@mixin rise($delay: 0ms, $duration: 700ms, $distance: 14px) {
+  --rise-distance: #{$distance};
+  animation: rise $duration $ease-out $delay both;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}

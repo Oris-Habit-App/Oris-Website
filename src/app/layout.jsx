@@ -1,31 +1,43 @@
-import { Inter } from "next/font/google";
-import "@/components/MainContainer/MainContainer.module.scss";
-import "@/app/styles/globals.scss"; 
-import Footer from "@/components/Footer/Footer";
-import NavBar from "@/components/NavBar/Navbar";
-import LenisProvider from "@/components/Scroll/lenisProvider";
+import { DM_Sans } from "next/font/google";
+import { THEME_BOOT_SCRIPT } from "@/components/ThemeSwitch/themeBoot";
+import "@/app/styles/globals.scss";
 
-const InterFont = Inter({
+const dmSans = DM_Sans({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["400", "500"],
+  variable: "--font-dm-sans",
   display: "swap",
 });
 
+const description =
+  "O Oris lê sua agenda, encaixa seus hábitos no tempo livre e ajusta o plano quando o dia muda. Entre na lista de espera.";
+
 export const metadata = {
-  title: "Oris",
-  description: "Your app of habits",
+  title: "Oris — hábitos que cabem na sua semana real",
+  description,
+  openGraph: {
+    title: "Oris — hábitos que cabem na sua semana real",
+    description,
+    locale: "pt_BR",
+    type: "website",
+  },
+};
+
+export const viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f7f7f5" },
+    { media: "(prefers-color-scheme: dark)", color: "#050505" },
+  ],
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="pt-br">
-      <body className={`${InterFont.variable} font-sans`}>
-        <LenisProvider>
-          <NavBar />
-          <main>{children}</main>
-          <Footer />
-        </LenisProvider>
-      </body>
+    // data-theme é posto pelo script antes da hidratação.
+    <html lang="pt-BR" className={dmSans.variable} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_BOOT_SCRIPT }} />
+      </head>
+      <body>{children}</body>
     </html>
   );
 }

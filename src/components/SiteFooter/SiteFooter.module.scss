@@ -1,0 +1,107 @@
+.footer {
+  background: var(--surface);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 56px var(--gutter) 32px;
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 320px;
+  color: var(--text-primary);
+}
+
+.tagline {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--text-secondary);
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px 24px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+// `label` do app: nomeia o grupo, pequeno e quieto.
+.columnTitle {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  color: var(--text-tertiary);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 20px;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  transition: color var(--motion-fast) ease;
+}
+
+.link:hover {
+  color: var(--text-primary);
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+.copy {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--text-tertiary);
+}
+
+@media (min-width: 768px) {
+  .inner {
+    gap: 64px;
+    padding-top: 72px;
+    padding-bottom: 40px;
+  }
+
+  .top {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 64px;
+  }
+
+  .columns {
+    grid-template-columns: repeat(3, auto);
+    gap: 64px;
+  }
+}

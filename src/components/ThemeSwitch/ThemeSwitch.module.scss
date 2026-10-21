@@ -1,0 +1,70 @@
+// Mesmo desenho do SegmentedControl do app: trilho em `surface-subtle`
+// (fica sobre a navbar em `surface`), indicador `surface-strong` deslizando,
+// opção ativa um passo de contraste acima.
+
+@use "../../app/styles/theme";
+
+$slot: 36px;
+$inset: 4px;
+
+.switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: $slot + 2 * $inset;
+  padding: $inset;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--surface-subtle);
+  cursor: pointer;
+  transition: transform var(--motion-fast) ease;
+}
+
+.switch:active {
+  transform: scale(var(--press-scale));
+}
+
+.switch:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.thumb {
+  position: absolute;
+  top: $inset;
+  left: $inset;
+  width: $slot;
+  height: $slot;
+  border-radius: var(--radius-pill);
+  background: var(--surface-strong);
+  transition: transform var(--motion-settle) cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  @include theme.dark {
+    transform: translateX($slot);
+  }
+}
+
+.option {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: $slot;
+  height: $slot;
+  color: var(--text-secondary);
+  transition: color var(--motion-settle) ease;
+}
+
+.sun {
+  color: var(--text-primary);
+
+  @include theme.dark {
+    color: var(--text-secondary);
+  }
+}
+
+.moon {
+  @include theme.dark {
+    color: var(--text-primary);
+  }
+}

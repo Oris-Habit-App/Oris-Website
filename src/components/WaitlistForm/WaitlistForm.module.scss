@@ -1,0 +1,181 @@
+@use "../../app/styles/motion";
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 460px;
+}
+
+.form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 16px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  /* --field-bg deixa o campo se destacar do fundo onde ele está. */
+  background: var(--field-bg, var(--surface));
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 22px;
+  transition: transform var(--motion-fast) ease;
+}
+
+.input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+// Soltar volta com uma leve sobra (mola); apertar é rápido e seco.
+.submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 12px 22px 12px 24px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--action);
+  color: var(--on-action);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 22px;
+  cursor: pointer;
+  transition:
+    transform 260ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color var(--motion-settle) ease;
+}
+
+.arrow {
+  display: inline-flex;
+  transition: transform 260ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+// Toque (mobile) e clique: encolhe e a seta dá um passo à frente.
+// --press-scale vira 1 com movimento reduzido.
+.submit:active:not(:disabled) {
+  transform: scale(calc(1 - (1 - var(--press-scale)) * 1.6));
+  transition-duration: 90ms;
+  transition-timing-function: ease-out;
+}
+
+.submit:active:not(:disabled) .arrow {
+  transform: translateX(4px);
+  transition-duration: 90ms;
+}
+
+// Hover só onde existe cursor: no celular ele ficaria preso após o toque.
+@media (hover: hover) {
+  .submit:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--action) 82%, var(--accent));
+  }
+
+  .submit:hover:not(:disabled) .arrow {
+    transform: translateX(3px);
+  }
+}
+
+.submit:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.submit:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.message {
+  min-height: 22px;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--text-secondary);
+}
+
+.message:empty {
+  min-height: 0;
+  height: 0;
+}
+
+.done {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--text-primary);
+  font-size: 15px;
+  line-height: 22px;
+  @include motion.rise(0ms, 500ms, 8px);
+}
+
+.doneIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  border-radius: var(--radius-pill);
+  background: var(--action);
+  color: var(--on-action);
+}
+
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+// Em telas largas o campo e o botão viram uma única pílula.
+@media (min-width: 520px) {
+  .row {
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+    padding: 4px;
+    border-radius: var(--radius-pill);
+    background: var(--field-bg, var(--surface));
+  }
+
+  .row:has(.input:focus-visible) {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .input {
+    flex: 1 1 auto;
+    min-width: 0;
+    background: transparent;
+  }
+
+  .input:focus-visible {
+    outline: none;
+  }
+
+  .submit {
+    flex: 0 0 auto;
+  }
+}
