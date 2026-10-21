@@ -1,63 +1,117 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Space+Grotesk:wght@300..700&family=Special+Gothic+Expanded+One&display=swap');
+// Tokens copied from the app's design system (Oris-Mobile-2,
+// docs/DESIGN_SYSTEM.md v2): same colors, DM Sans 400/500, no borders.
+// Light is the reference; Dark mirrors each role.
+:root {
+  --canvas: #f7f7f5;
+  --surface: #ffffff;
+  --surface-subtle: #f1f1ef;
+  --surface-strong: #e8e8e5;
+  --text-primary: #0a0a0a;
+  --text-secondary: #5c5c59;
+  --text-tertiary: #858581;
+  --action: #0a0a0a;
+  --on-action: #fafaf8;
+  --accent: #2f80ed;
+  --accent-soft: #eaf3fe;
+  --danger: #dd4747;
 
-* {
-  // outline: 1px solid red;
-  box-sizing: border-box;
-  max-width: 100%;
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+  --radius-pill: 999px;
 
-  img,
-  svg {
-    max-width: 100%;
-    height: auto;
-  }
+  --gutter: 16px;
+  --content-width: 1120px;
+
+  --press-scale: 0.97;
+  --motion-fast: 120ms;
+  --motion-settle: 220ms;
+
+  color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0B0A0C;
-    --foreground: #ededed;
+    --canvas: #050505;
+    --surface: #151515;
+    --surface-subtle: #1c1c1c;
+    --surface-strong: #262626;
+    --text-primary: #f7f7f5;
+    --text-secondary: #b8b8b3;
+    --text-tertiary: #81817c;
+    --action: #f5f5f3;
+    --on-action: #0a0a0a;
+    --accent: #4a95f5;
+    --accent-soft: #10243d;
+    --danger: #f06a6a;
+
+    color-scheme: dark;
   }
 }
 
-html,
-body,
-#__next {
-  scroll-behavior: auto;
-  /* Lenis cuida da suavidade */
-  width: 100%;
-  max-width: 100%;
-  // overflow-x: hidden;
+@media (min-width: 768px) {
+  :root {
+    --gutter: 32px;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 html {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  :root {
+    --press-scale: 1;
+    --motion-fast: 0ms;
+    --motion-settle: 0ms;
+  }
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  height: 100%;
-  padding: 0;
   margin: 0;
-  font-family: 'Inter', sans-serif;
+  background: var(--canvas);
+  color: var(--text-primary);
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 22px;
+  -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  background-color: #0B0A0C;
 }
 
-main {
-  flex: 1;
+h1,
+h2,
+h3,
+p {
+  margin: 0;
 }
 
 a {
   color: inherit;
-  text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
