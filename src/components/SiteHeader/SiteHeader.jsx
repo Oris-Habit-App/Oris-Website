@@ -1,3 +1,4 @@
+import OrisLogo from "@/components/OrisLogo/OrisLogo";
 import ThemeSwitch from "@/components/ThemeSwitch/ThemeSwitch";
 import styles from "./SiteHeader.module.scss";
 
@@ -6,21 +7,26 @@ const LINKS = [
   { label: "Contato", href: "#contato" },
 ];
 
-// Barra simples no topo: links numa ponta, tema na outra. Sem logo: o
-// ícone do app já abre a página logo abaixo.
+// Barra simples no topo: logo numa ponta, links e tema na outra.
 export default function SiteHeader() {
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
-        <nav className={styles.links} aria-label="Principal">
-          {LINKS.map((link) => (
-            <a key={link.href} className={styles.link} href={link.href}>
-              {link.label}
-            </a>
-          ))}
-        </nav>
+        <a className={styles.brand} href="#topo" aria-label="Oris, início">
+          <OrisLogo height={20} markColor="var(--accent)" />
+        </a>
 
-        <ThemeSwitch />
+        <div className={styles.actions}>
+          <nav className={styles.links} aria-label="Principal">
+            {LINKS.map((link) => (
+              <a key={link.href} className={styles.link} href={link.href}>
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          <ThemeSwitch />
+        </div>
       </div>
     </header>
   );
